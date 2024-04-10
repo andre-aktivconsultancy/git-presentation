@@ -1,40 +1,158 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
 
-		<title>reveal.js</title>
+    <title>Git Master class</title>
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" />
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown>
+          <textarea data-template>
+# Git master class
+---
+## Some rules of thumb
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
+More guidelines actually <!-- .element: class="fragment" -->
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+And opinionated 😁 <!-- .element: class="fragment" -->
+
+---
+### Once your code is in a local commit it is safe!
+...well pretty safe... <!-- .element: class="fragment" -->
+
+As long as you don't destroy the .git folder. <!-- .element: class="fragment" -->
+
+Rebasing can be reverted, merges undone and lost commits can be found. <!-- .element: class="fragment" -->
+
+git reflog is your friend <!-- .element: class="fragment" -->
+
+https://ohshitgit.com/ <!-- .element: class="fragment" -->
+
+---
+### Never force push!
+
+... but feel free to push with --force-with-lease on your feature branches.<!-- .element: class="fragment" -->
+
+... makes sure your local state is in sync with remote and you don't throw away something your collegue just pushed.<!-- .element: class="fragment" -->
+
+---
+### Prefer linear history
+
+image
+
+Easier to understand and reason about what happened when.<!-- .element: class="fragment" -->
+
+---
+## My workflow
+
+---
+### Commit often
+
+* After a test passes.
+* Or a quick refactor done.
+* Or a small step in implementing a feature.
+
+Later think of the story to tell in your PR and clean your commits. <!-- .element: class="fragment" -->
+
+---
+```shell
+git add --patch
+
+```
+
+---
+### ❤️ Interactive rebase
+
+---
+```ini
+# .gitconfig
+[rebase]
+  autosquash = true
+```
+```shell
+git commit --fixup
+git commit --squash
+git rebase -i
+```
+
+---
+# Handling Merge conflicts
+
+I do use a GUI sometimes 😉<!-- .element: class="fragment" -->
+
+```shell
+git mergetool
+```
+
+---
+### Bisecting
+
+Don't use it often, but occasionally a timesaver!
+
+---
+## Git config
+* Set (more) sensible defaults
+* Aliasses!
+* Colorize your output
+* Configure external diff / merge tools
+
+---
+```ini
+# .gitconfig
+[alias]
+    lol = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    lola = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
+
+[rebase]
+    autosquash = true # commit --fixup commit --squash
+    autoStash = true
+
+[pull]
+    rebase = true # No merge commits 😊
+
+[branch]
+  sort = -committerdate
+```
+
+---
+# 🤔 💡 ❓
+		</textarea
+          >
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        width: "50%",
+        hash: true,
+        view: "scroll",
+
+        // Force the scrollbar to remain visible
+        scrollProgress: true,
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
 </html>
