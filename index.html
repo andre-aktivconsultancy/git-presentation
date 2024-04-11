@@ -22,6 +22,9 @@
         <section data-markdown>
           <textarea data-template>
 # Git master class
+
+Most important tool as a Dev?! <!-- .element: class="fragment" -->
+
 ---
 ## Some rules of thumb
 
@@ -51,12 +54,17 @@ https://ohshitgit.com/ <!-- .element: class="fragment" -->
 ---
 ### Prefer linear history
 
-image
+![merge-hell](./merge-hell.png) <!-- .element height="50%" width="50%" -->
 
-Easier to understand and reason about what happened when.<!-- .element: class="fragment" -->
+---
+![linear history](./linear-history.png)
+
+Easier to understand and reason about what happened when.
 
 ---
 ## My workflow
+
+❤️ CLI <!-- .element: class="fragment" -->
 
 ---
 ### Commit often
@@ -82,7 +90,7 @@ git add --patch
 [rebase]
   autosquash = true
 ```
-```shell
+```sh
 git commit --fixup
 git commit --squash
 git rebase -i
@@ -102,6 +110,12 @@ git mergetool
 
 Don't use it often, but occasionally a timesaver!
 
+---
+```shell
+git bisect start develop main  # develop is bad main is good
+git bisect run mvn test  # does a binary search based on the command
+git bisect reset  # clean up
+```
 ---
 ## Git config
 * Set (more) sensible defaults
@@ -126,6 +140,7 @@ Don't use it often, but occasionally a timesaver!
 [branch]
   sort = -committerdate
 ```
+https://gist.github.com/andre-aktivconsultancy/99f85139371666e3b6f62a50adc8cc17
 
 ---
 # 🤔 💡 ❓
