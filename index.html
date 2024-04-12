@@ -23,7 +23,7 @@
           <textarea data-template>
 # Git master class
 
-Most important tool as a Dev?! <!-- .element: class="fragment" -->
+Most important tool when coding?! <!-- .element: class="fragment" -->
 
 ---
 ## Some rules of thumb
@@ -46,10 +46,12 @@ https://ohshitgit.com/ <!-- .element: class="fragment" -->
 
 ---
 ### Never force push!
+<p>
+... but feel free to push with `--force-with-lease` on your feature branches.
+</p>
+<!-- .element: class="fragment" -->
 
-... but feel free to push with --force-with-lease on your feature branches.<!-- .element: class="fragment" -->
-
-... makes sure your local state is in sync with remote and you don't throw away something your collegue just pushed.<!-- .element: class="fragment" -->
+... makes sure your local state is in sync with remote.<!-- .element: class="fragment" -->
 
 ---
 ### Prefer linear history
@@ -76,7 +78,7 @@ Easier to understand and reason about what happened when.
 Later think of the story to tell in your PR and clean your commits. <!-- .element: class="fragment" -->
 
 ---
-```shell
+```sh
 git add --patch
 
 ```
@@ -91,8 +93,8 @@ git add --patch
   autosquash = true
 ```
 ```sh
-git commit --fixup
-git commit --squash
+git commit --fixup  # Takes original commit message
+git commit --squash # Opens editor to rewrite commit message
 git rebase -i
 ```
 
@@ -101,17 +103,17 @@ git rebase -i
 
 I do use a GUI sometimes 😉<!-- .element: class="fragment" -->
 
-```shell
+```sh
 git mergetool
 ```
 
 ---
 ### Bisecting
 
-Don't use it often, but occasionally a timesaver!
+I don't use it often, but occasionally a timesaver!
 
 ---
-```shell
+```sh
 git bisect start develop main  # develop is bad main is good
 git bisect run mvn test  # does a binary search based on the command
 git bisect reset  # clean up
@@ -135,7 +137,7 @@ git bisect reset  # clean up
     autoStash = true
 
 [pull]
-    rebase = true # No merge commits 😊
+    rebase = true # No merge commits when pulling 😊
 
 [branch]
   sort = -committerdate
